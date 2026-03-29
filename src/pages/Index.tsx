@@ -200,21 +200,19 @@ const Index = () => {
       const { error: dbError } = await supabase.from("intake_submissions").insert([formData]);
       if (dbError) console.error("DB error:", dbError);
 
-      // Send confirmation email via Resend
+      // Send confirmation email via Edge Function
       try {
-        await fetch("https://api.resend.com/emails", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${RESEND_API_KEY}`,
-          },
-          body: JSON.stringify({
-            from: FROM_EMAIL,
-            to: email,
-            subject: "Your Writturns strategy decks are being built.",
-            text: `Hi ${firstName},\n\nWe've received everything we need.\n\nYour personalised strategy decks will be in your inbox within 12 hours of this email. You submitted at ${submissionTimestamp}.\n\nWe're as buzzed as you to boost your returns!\n\n— Writturns`,
-          }),
+        const { error: fnError } = await supabase.functions.invoke('clever-handler', {
+          body: {
+            email: formData.email,
+            full_name: formData.full_name,
+            brand_name: formData.brand_name,
+            created_at: new Date().toISOString()
+          }
         });
+        if (fnError) {
+          console.error('Email function error:', fnError);
+        }
       } catch (emailErr) {
         console.error("Email error:", emailErr);
       }
