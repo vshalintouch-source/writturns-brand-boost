@@ -5,9 +5,6 @@ import { supabase } from "@/lib/supabase";
 
 const TOTAL_SECTIONS = 7;
 
-const RESEND_API_KEY = "re_N4TECKxy_BcUgcAMAVa3aUqRtCZKc534F";
-const FROM_EMAIL = "hi@updates.writturns.com";
-
 const Index = () => {
   const [section, setSection] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
