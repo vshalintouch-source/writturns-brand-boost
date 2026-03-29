@@ -242,6 +242,13 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Logo */}
+      <div className="py-5 text-center">
+        <a href="https://writturns.com" target="_blank" rel="noopener noreferrer" className="font-display italic text-[22px]" style={{ color: '#C8C8C2' }}>
+          Writturns
+        </a>
+      </div>
+
       {/* Banner */}
       <div className="bg-card border-b border-muted py-3 px-4">
         <p className="text-center text-muted-foreground text-xs tracking-[0.15em] uppercase font-body">
