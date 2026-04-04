@@ -195,6 +195,7 @@ const Index = () => {
     };
 
     try {
+      console.log("Form submission data:", JSON.stringify(formData, null, 2));
       const { error: dbError } = await supabase.from("intake_submissions").insert([formData]);
       if (dbError) console.error("DB error:", dbError);
 
