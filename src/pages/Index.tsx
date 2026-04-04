@@ -164,7 +164,7 @@ const Index = () => {
       meta_importance_detail: metaImportanceDetail,
       monthly_spend: monthlySpend,
       growth_aggression: growthAggression,
-      aov,
+      aov: aovMetric,
       cac,
       aov_metric: aovMetric,
       cvr,
