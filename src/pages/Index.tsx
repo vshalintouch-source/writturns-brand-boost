@@ -335,7 +335,8 @@ const Index = () => {
                 onChange={setGrowthAggression}
                 required
               />
-            
+            </>
+          )}
 
           {section === 2 && (
             <>
