@@ -6,7 +6,7 @@ export const ConfirmationScreen = () => (
       </h1>
       <p className="font-display text-2xl md:text-3xl text-muted-foreground">
         Your strategy decks and Loom walkthrough will be in your inbox within{" "}
-        <span className="shimmer-text">12 hours</span>.
+        <span className="shimmer-text">24 hours</span>.
       </p>
     </div>
   </div>
