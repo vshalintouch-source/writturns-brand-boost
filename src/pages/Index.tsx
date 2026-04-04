@@ -73,7 +73,6 @@ const Index = () => {
         if (!metaImportance) errs.push("Meta importance is required");
         if (!monthlySpend) errs.push("Monthly spend is required");
         if (!growthAggression) errs.push("Growth plan is required");
-        if (!aov.trim()) errs.push("AOV is required");
         break;
       case 2:
         if (!cac.trim()) errs.push("CAC is required");
