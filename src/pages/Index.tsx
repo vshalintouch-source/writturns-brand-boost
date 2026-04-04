@@ -195,8 +195,9 @@ const Index = () => {
     };
 
     try {
-      console.log("Form submission data:", JSON.stringify(formData, null, 2));
-      const { error: dbError } = await supabase.from("intake_submissions").insert([formData]);
+      console.log("FORM DATA:", JSON.stringify(formData));
+      const { data: insertData, error: dbError } = await supabase.from("intake_submissions").insert([formData]).select();
+      console.log("SUPABASE INSERT DATA:", JSON.stringify(insertData));
       if (dbError) console.error("DB error:", dbError);
 
       // Send confirmation email via Edge Function
