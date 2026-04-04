@@ -341,27 +341,41 @@ const Index = () => {
           {section === 2 && (
             <>
               <div className="mb-8">
-                <label className="block font-display text-xl md:text-2xl text-foreground mb-6">
-                  What do your core ad numbers look like right now?
+                <label className="block font-display text-xl md:text-2xl text-foreground mb-2">
+                  What are your average ad metrics across your best performing month?
                   <span className="text-muted-foreground ml-1">*</span>
                 </label>
+                <p className="text-muted-foreground font-body text-sm mb-6">
+                  Give us averages — not per creative. Ballpark is fine.
+                </p>
                 <div className="space-y-4">
                   {[
-                    { label: "CAC (cost per customer acquired)", val: cac, set: setCac, ph: "e.g. ₹650" },
-                    { label: "AOV (average order value)", val: aovMetric, set: setAovMetric, ph: "e.g. ₹1,800" },
-                    { label: "CVR (conversion rate)", val: cvr, set: setCvr, ph: "e.g. 1.2%" },
-                    { label: "CTR (click through rate)", val: ctr, set: setCtr, ph: "e.g. 1.4%" },
-                    { label: "CPC (cost per click)", val: cpc, set: setCpc, ph: "e.g. ₹18" },
+                    { label: "CAC (cost per customer acquired)", val: cac, set: setCac, ph: "e.g. 650", prefix: "₹" },
+                    { label: "AOV (average order value)", val: aovMetric, set: setAovMetric, ph: "e.g. 1800", prefix: "₹" },
+                    { label: "CVR (conversion rate)", val: cvr, set: setCvr, ph: "e.g. 1.2", suffix: "%" },
+                    { label: "CTR (click through rate)", val: ctr, set: setCtr, ph: "e.g. 1.4", suffix: "%" },
+                    { label: "CPC (cost per click)", val: cpc, set: setCpc, ph: "e.g. 18", prefix: "₹" },
                   ].map((m) => (
                     <div key={m.label}>
                       <span className="text-muted-foreground font-body text-sm block mb-1">{m.label}</span>
-                      <input
-                        type="text"
-                        value={m.val}
-                        onChange={(e) => m.set(e.target.value)}
-                        placeholder={m.ph}
-                        className="w-full bg-transparent border-b border-muted-foreground/30 text-foreground font-body text-base py-2 px-0 placeholder:text-muted-foreground/40 focus:outline-none focus:border-accent transition-colors"
-                      />
+                      <div className="flex items-center border-b border-muted-foreground/30 focus-within:border-accent transition-colors">
+                        {m.prefix && <span className="text-muted-foreground font-body text-base pr-1">{m.prefix}</span>}
+                        <input
+                          type="text"
+                          inputMode="decimal"
+                          value={m.val}
+                          onChange={(e) => {
+                            const v = e.target.value;
+                            if (v === "" || /^\d*\.?\d*$/.test(v)) m.set(v);
+                          }}
+                          placeholder={m.ph}
+                          className="w-full bg-transparent text-foreground font-body text-base py-2 px-0 placeholder:text-muted-foreground/40 focus:outline-none"
+                        />
+                        {m.suffix && <span className="text-muted-foreground font-body text-base pl-1">{m.suffix}</span>}
+                      </div>
+                      {errors.length > 0 && !m.val.trim() && (
+                        <p className="text-destructive font-body text-xs mt-1">{m.label.split(" (")[0]} is required</p>
+                      )}
                     </div>
                   ))}
                 </div>
