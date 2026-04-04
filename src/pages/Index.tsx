@@ -23,7 +23,6 @@ const Index = () => {
   const [metaImportanceDetail, setMetaImportanceDetail] = useState("");
   const [monthlySpend, setMonthlySpend] = useState("");
   const [growthAggression, setGrowthAggression] = useState("");
-  const [aov, setAov] = useState("");
 
   // Section 3
   const [cac, setCac] = useState("");
