@@ -335,15 +335,7 @@ const Index = () => {
                 onChange={setGrowthAggression}
                 required
               />
-              <FormField
-                label="What's your AOV (average order value)?"
-                value={aov}
-                onChange={setAov}
-                placeholder="e.g. ₹1,800 — ballpark is fine"
-                required
-              />
-            </>
-          )}
+            
 
           {section === 2 && (
             <>
