@@ -204,9 +204,7 @@ const Index = () => {
       try {
         const { error: fnError } = await supabase.functions.invoke('clever-handler', {
           body: {
-            email: formData.email,
-            full_name: formData.full_name,
-            brand_name: formData.brand_name,
+            ...formData,
             created_at: new Date().toISOString()
           }
         });
