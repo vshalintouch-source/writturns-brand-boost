@@ -105,6 +105,8 @@ const Index = () => {
         if (!designation.trim()) errs.push("Designation is required");
         if (!personalInstagram.trim()) errs.push("Instagram handle is required");
         if (!email.trim()) errs.push("Email is required");
+        if (!whatsapp.trim()) errs.push("WhatsApp number is required");
+        if (whatsapp.trim() && whatsapp.replace(/\D/g, "").length < 10) errs.push("WhatsApp number must be at least 10 digits");
         if (!brandName.trim()) errs.push("Brand name is required");
         if (!brandInstagram.trim()) errs.push("Brand Instagram is required");
         if (!brandWebsite.trim()) errs.push("Brand website is required");
