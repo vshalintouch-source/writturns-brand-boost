@@ -56,6 +56,7 @@ const Index = () => {
   const [designation, setDesignation] = useState("");
   const [personalInstagram, setPersonalInstagram] = useState("");
   const [email, setEmail] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
   const [brandName, setBrandName] = useState("");
   const [brandInstagram, setBrandInstagram] = useState("");
   const [brandWebsite, setBrandWebsite] = useState("");
@@ -104,6 +105,8 @@ const Index = () => {
         if (!designation.trim()) errs.push("Designation is required");
         if (!personalInstagram.trim()) errs.push("Instagram handle is required");
         if (!email.trim()) errs.push("Email is required");
+        if (!whatsapp.trim()) errs.push("WhatsApp number is required");
+        if (whatsapp.trim() && whatsapp.replace(/\D/g, "").length < 10) errs.push("WhatsApp number must be at least 10 digits");
         if (!brandName.trim()) errs.push("Brand name is required");
         if (!brandInstagram.trim()) errs.push("Brand Instagram is required");
         if (!brandWebsite.trim()) errs.push("Brand website is required");
@@ -188,6 +191,7 @@ const Index = () => {
       designation,
       personal_instagram: personalInstagram,
       email,
+      whatsapp,
       brand_name: brandName,
       brand_instagram: brandInstagram,
       brand_website: brandWebsite,
@@ -511,6 +515,28 @@ const Index = () => {
               <FormField label="Your designation" value={designation} onChange={setDesignation} placeholder="e.g. Founder, Co-founder, Head of Marketing" required />
               <FormField label="Your personal Instagram handle" value={personalInstagram} onChange={setPersonalInstagram} required />
               <FormField label="Your personal email address" value={email} onChange={setEmail} type="email" required />
+              <div className="mb-8">
+                <label className="block font-display text-xl md:text-2xl text-foreground mb-3">
+                  WhatsApp number
+                  <span className="text-muted-foreground ml-1">*</span>
+                </label>
+                <input
+                  type="tel"
+                  inputMode="numeric"
+                  value={whatsapp}
+                  onChange={(e) => {
+                    const v = e.target.value;
+                    if (v === "" || /^[\d+\s\-()]*$/.test(v)) setWhatsapp(v);
+                  }}
+                  placeholder="e.g. +91 98765 43210"
+                  className="w-full bg-transparent border-b border-muted-foreground/30 text-foreground font-body text-base py-3 px-0 placeholder:text-muted-foreground/40 focus:outline-none focus:border-accent transition-colors"
+                />
+                {errors.length > 0 && (!whatsapp.trim() || whatsapp.replace(/\D/g, "").length < 10) && (
+                  <p className="text-destructive font-body text-xs mt-1">
+                    {!whatsapp.trim() ? "WhatsApp number is required" : "Must be at least 10 digits"}
+                  </p>
+                )}
+              </div>
 
               <div className="border-t border-muted my-10" />
 
