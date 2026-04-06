@@ -198,28 +198,34 @@ const Index = () => {
       console.log("FORM DATA:", JSON.stringify(formData));
       const { data: insertData, error: dbError } = await supabase.from("intake_submissions").insert([formData]).select();
       console.log("SUPABASE INSERT DATA:", JSON.stringify(insertData));
-      if (dbError) console.error("DB error:", dbError);
-
-      // Send confirmation email via Edge Function
-      try {
-        const { error: fnError } = await supabase.functions.invoke('clever-handler', {
-          body: {
-            ...formData,
-            created_at: new Date().toISOString()
-          }
-        });
-        if (fnError) {
-          console.error('Email function error:', fnError);
-        }
-      } catch (emailErr) {
-        console.error("Email error:", emailErr);
+      
+      if (dbError) {
+        console.error("DB error:", dbError);
+        setErrors(["Something went wrong. Please try again."]);
+        setSubmitting(false);
+        return;
       }
 
+      // Show confirmation immediately
       setSubmitted(true);
+      setSubmitting(false);
+
+      // Fire edge function in background — don't block UI
+      supabase.functions.invoke('clever-handler', {
+        body: {
+          ...formData,
+          created_at: new Date().toISOString()
+        }
+      }).then(({ error: fnError }) => {
+        if (fnError) console.error('Edge function error:', fnError);
+        else console.log('Edge function called successfully');
+      }).catch((emailErr) => {
+        console.error("Email error:", emailErr);
+      });
+
     } catch (err) {
       console.error("Submission error:", err);
       setErrors(["Something went wrong. Please try again."]);
-    } finally {
       setSubmitting(false);
     }
   };
