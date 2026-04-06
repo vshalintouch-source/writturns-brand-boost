@@ -56,6 +56,7 @@ const Index = () => {
   const [designation, setDesignation] = useState("");
   const [personalInstagram, setPersonalInstagram] = useState("");
   const [email, setEmail] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
   const [brandName, setBrandName] = useState("");
   const [brandInstagram, setBrandInstagram] = useState("");
   const [brandWebsite, setBrandWebsite] = useState("");
