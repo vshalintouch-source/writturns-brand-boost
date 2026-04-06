@@ -515,6 +515,28 @@ const Index = () => {
               <FormField label="Your designation" value={designation} onChange={setDesignation} placeholder="e.g. Founder, Co-founder, Head of Marketing" required />
               <FormField label="Your personal Instagram handle" value={personalInstagram} onChange={setPersonalInstagram} required />
               <FormField label="Your personal email address" value={email} onChange={setEmail} type="email" required />
+              <div className="mb-8">
+                <label className="block font-display text-xl md:text-2xl text-foreground mb-3">
+                  WhatsApp number
+                  <span className="text-muted-foreground ml-1">*</span>
+                </label>
+                <input
+                  type="tel"
+                  inputMode="numeric"
+                  value={whatsapp}
+                  onChange={(e) => {
+                    const v = e.target.value;
+                    if (v === "" || /^[\d+\s\-()]*$/.test(v)) setWhatsapp(v);
+                  }}
+                  placeholder="e.g. +91 98765 43210"
+                  className="w-full bg-transparent border-b border-muted-foreground/30 text-foreground font-body text-base py-3 px-0 placeholder:text-muted-foreground/40 focus:outline-none focus:border-accent transition-colors"
+                />
+                {errors.length > 0 && (!whatsapp.trim() || whatsapp.replace(/\D/g, "").length < 10) && (
+                  <p className="text-destructive font-body text-xs mt-1">
+                    {!whatsapp.trim() ? "WhatsApp number is required" : "Must be at least 10 digits"}
+                  </p>
+                )}
+              </div>
 
               <div className="border-t border-muted my-10" />
 
