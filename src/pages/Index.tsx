@@ -191,6 +191,7 @@ const Index = () => {
       designation,
       personal_instagram: personalInstagram,
       email,
+      whatsapp,
       brand_name: brandName,
       brand_instagram: brandInstagram,
       brand_website: brandWebsite,
