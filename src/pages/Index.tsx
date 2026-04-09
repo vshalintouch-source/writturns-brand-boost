@@ -200,11 +200,16 @@ const Index = () => {
 
     try {
       console.log("FORM DATA:", JSON.stringify(formData));
+      console.log("FORM DATA KEYS:", Object.keys(formData).join(", "));
       const { data: insertData, error: dbError } = await supabase.from("intake_submissions").insert([formData]).select();
-      console.log("SUPABASE INSERT DATA:", JSON.stringify(insertData));
+      console.log("SUPABASE INSERT RESULT:", JSON.stringify(insertData));
       
       if (dbError) {
-        console.error("DB error:", dbError);
+        console.error("SUPABASE DB ERROR:", JSON.stringify(dbError));
+        console.error("DB error code:", dbError.code);
+        console.error("DB error message:", dbError.message);
+        console.error("DB error details:", dbError.details);
+        console.error("DB error hint:", dbError.hint);
         setErrors(["Something went wrong. Please try again."]);
         setSubmitting(false);
         return;
