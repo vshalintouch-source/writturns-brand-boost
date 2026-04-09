@@ -214,6 +214,11 @@ const Index = () => {
       setSubmitted(true);
       setSubmitting(false);
 
+      // Fire Meta Pixel lead event
+      if (typeof window !== 'undefined' && (window as any).fbq) {
+        (window as any).fbq('track', 'Lead');
+      }
+
       // Fire edge function in background — don't block UI
       supabase.functions.invoke('clever-handler', {
         body: {
