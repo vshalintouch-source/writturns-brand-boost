@@ -1,9 +1,5 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import FadeUp from "./FadeUp";
 
 const faqs = [
@@ -37,6 +33,65 @@ const faqs = [
   },
 ];
 
+const FAQItem = ({ faq }: { faq: { q: string; a: string } }) => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div
+      className="mb-3 transition-colors duration-200"
+      style={{
+        background: open ? "#0d0d0d" : "#0d0d0d",
+        border: "1px solid rgba(248,248,246,0.08)",
+        borderRadius: "3px",
+      }}
+      onMouseEnter={(e) => {
+        if (!open) (e.currentTarget as HTMLDivElement).style.background = "#111";
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLDivElement).style.background = "#0d0d0d";
+      }}
+    >
+      {/* Shimmer top border on open */}
+      <div
+        className="h-[2px] transition-transform duration-500 origin-left"
+        style={{
+          background: "linear-gradient(135deg, #f0f0ec, #c8c8c0, #a8a8a0, #e0e0da, #c8c8c2)",
+          transform: open ? "scaleX(1)" : "scaleX(0)",
+        }}
+      />
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between text-left"
+        style={{ padding: "1.2rem 1.4rem" }}
+      >
+        <span className="font-body font-medium text-foreground" style={{ fontSize: "clamp(0.84rem, 1vw, 0.96rem)" }}>
+          {faq.q}
+        </span>
+        <ChevronDown
+          className="w-4 h-4 shrink-0 ml-4 transition-transform duration-300"
+          style={{
+            color: "rgba(200,200,194,0.5)",
+            transform: open ? "rotate(180deg)" : "rotate(0deg)",
+          }}
+        />
+      </button>
+      <div
+        className="overflow-hidden transition-all duration-300"
+        style={{
+          maxHeight: open ? "500px" : "0px",
+          opacity: open ? 1 : 0,
+        }}
+      >
+        <div style={{ padding: "0 1.4rem 1.2rem", paddingTop: "0.8rem", borderTop: "1px solid rgba(248,248,246,0.06)" }}>
+          <p className="font-body font-light text-muted-foreground leading-[1.75]" style={{ fontSize: "0.875rem", opacity: 0.45 }}>
+            {faq.a}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const FAQSection = () => (
   <section className="px-6 md:px-12 py-24 md:py-32 max-w-[800px] mx-auto">
     <FadeUp>
@@ -46,23 +101,11 @@ const FAQSection = () => (
     </FadeUp>
 
     <FadeUp delay={0.1}>
-      <Accordion type="single" collapsible className="space-y-0">
+      <div>
         {faqs.map((faq, i) => (
-          <AccordionItem
-            key={i}
-            value={`faq-${i}`}
-            className="border-b-0 border border-accent/20 mb-3 group hover:border-accent/40 transition-colors"
-            style={{ borderRadius: "3px" }}
-          >
-            <AccordionTrigger className="px-5 py-4 text-left font-body font-medium text-foreground text-sm hover:no-underline">
-              {faq.q}
-            </AccordionTrigger>
-            <AccordionContent className="px-5 pb-5 font-body font-light text-muted-foreground text-sm leading-relaxed opacity-70">
-              {faq.a}
-            </AccordionContent>
-          </AccordionItem>
+          <FAQItem key={i} faq={faq} />
         ))}
-      </Accordion>
+      </div>
     </FadeUp>
   </section>
 );

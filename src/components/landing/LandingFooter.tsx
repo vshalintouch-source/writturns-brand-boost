@@ -1,7 +1,10 @@
 const LandingFooter = () => (
-  <footer className="border-t border-accent/20 px-6 md:px-12 py-6 flex items-center justify-between">
-    <span className="font-display text-sm shimmer-text">Writturns</span>
-    <span className="font-body font-light text-muted-foreground text-xs opacity-50">
+  <footer
+    className="px-6 md:px-12 py-6 flex items-center justify-between"
+    style={{ borderTop: "1px solid rgba(248,248,246,0.08)" }}
+  >
+    <span className="font-display text-sm shimmer-text-v2">Writturns</span>
+    <span className="font-body font-light text-muted-foreground" style={{ fontSize: "0.75rem", opacity: 0.22, letterSpacing: "0.06em" }}>
       Performance Creative Strategy
     </span>
   </footer>

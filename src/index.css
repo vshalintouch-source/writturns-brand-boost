@@ -101,6 +101,15 @@
     animation: shimmer 3s ease-in-out infinite;
   }
 
+  .shimmer-text-v2 {
+    background: linear-gradient(135deg, #f0f0ec, #c8c8c0, #a8a8a0, #e0e0da, #c8c8c2);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
   .section-fade-enter {
     opacity: 0;
     transform: translateY(12px);
