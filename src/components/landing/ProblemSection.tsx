@@ -24,7 +24,7 @@ const ProblemSection = () => (
     <div className="max-w-[1100px] mx-auto">
       <FadeUp>
         <h2 className="font-body font-medium text-foreground text-center text-2xl md:text-4xl mb-16">
-          Every agency is optimising the wrong number.
+          Most brands are optimising the wrong number.
         </h2>
       </FadeUp>
 
