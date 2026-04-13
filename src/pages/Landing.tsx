@@ -5,6 +5,7 @@ import ProblemSection from "@/components/landing/ProblemSection";
 import SolutionSection from "@/components/landing/SolutionSection";
 import RoadmapSection from "@/components/landing/RoadmapSection";
 import FAQSection from "@/components/landing/FAQSection";
+import MidCTASection from "@/components/landing/MidCTASection";
 import FinalCTASection from "@/components/landing/FinalCTASection";
 import LandingFooter from "@/components/landing/LandingFooter";
 
@@ -30,6 +31,7 @@ const Landing = () => {
       <ProblemSection />
       <SolutionSection />
       <RoadmapSection />
+      <MidCTASection />
       <FAQSection />
       <FinalCTASection />
       <LandingFooter />
