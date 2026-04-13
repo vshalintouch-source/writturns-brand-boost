@@ -43,7 +43,7 @@ const steps = [
   },
   {
     num: "05",
-    title: "Creatives go live",
+    title: "We start building",
     desc: "Within 48 hours of the alignment call. Built, tested, and ready to run.",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(200,200,194,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
