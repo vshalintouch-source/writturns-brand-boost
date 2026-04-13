@@ -72,10 +72,10 @@ const RoadmapSection = () => (
 
     {/* Vertical alternating timeline */}
     <div className="relative">
-      {/* Center line */}
+      {/* Center line — ends at Step 05 circle center */}
       <div
-        className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px my-[31px] border-0"
-        style={{ background: "rgba(200,200,194,0.15)" }}
+        className="absolute left-1/2 -translate-x-1/2 top-[20px] w-px border-0"
+        style={{ background: "rgba(200,200,194,0.15)", height: "calc(100% - 20px - (16rem + 20px))" }}
       />
 
       <div className="space-y-16">
