@@ -74,7 +74,7 @@ const RoadmapSection = () => (
     <div className="relative">
       {/* Center line */}
       <div
-        className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px"
+        className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px my-[31px] border-0"
         style={{ background: "rgba(200,200,194,0.15)" }}
       />
 
@@ -104,7 +104,7 @@ const RoadmapSection = () => (
                 {/* Center circle */}
                 <div className="absolute left-1/2 -translate-x-1/2 z-10">
                   <div
-                    className="w-10 h-10 flex items-center justify-center"
+                    className="w-10 h-10 flex items-center justify-center border-0"
                     style={{
                       border: "1px solid rgba(200,200,194,0.3)",
                       borderRadius: "50%",
