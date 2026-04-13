@@ -20,11 +20,11 @@ const newWay = [
 ];
 
 const ProblemSection = () => (
-  <section className="bg-[#080808] px-6 md:px-12 py-24 md:py-32">
+  <section className="px-6 md:px-12 py-24 md:py-32 bg-primary-foreground text-primary">
     <div className="max-w-[1100px] mx-auto">
       <FadeUp>
         <h2 className="font-body font-medium text-foreground text-center text-2xl md:text-4xl mb-16">
-          Every agency is optimising the wrong number.
+          Every brand is optimising the wrong number.
         </h2>
       </FadeUp>
 
