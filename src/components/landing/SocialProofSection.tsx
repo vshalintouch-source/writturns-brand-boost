@@ -14,7 +14,7 @@ const largeCards = [
 const smallCards = [
   {
     quote: "You didn't just make a nice ad — you actually understood what would click with our audience. The video did really well, people connected with it and shared it too.",
-    attribution: "Kushaan, Founder · Aesthesy",
+    attribution: "bvs ganesh, Founder · Tones fashion",
   },
   {
     quote: "We've promoted these tours before, but this time it just felt different. The content made people actually want to go. Rajasthan, Kashmir, Himachal — all became our best sellers after that.",
@@ -22,7 +22,7 @@ const smallCards = [
   },
   {
     quote: "They took our raw footage and turned it into reels that actually felt exciting to watch. Even during the shoot, they knew what moments to capture.",
-    attribution: "BVS Ganesh, Founder · Tones Fashion",
+    attribution: "AYUSH TIWARI, CHEF",
   },
   {
     quote: "You really pay attention to the small things and that shows in the final output. It didn't just look good — it actually felt like us.",
