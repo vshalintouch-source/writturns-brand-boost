@@ -56,7 +56,7 @@ const SocialProofSection = () => (
     </FadeUp>
     <FadeUp delay={0.05}>
       <h2 className="font-body font-medium text-foreground text-center text-2xl md:text-4xl mb-3">
-        They came for the audit, but stayed for the{" "}
+        They came for the form. They stayed for the{" "}
         <span className="font-display shimmer-text-v2">thinking.</span>
       </h2>
     </FadeUp>
