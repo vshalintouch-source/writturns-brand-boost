@@ -92,7 +92,7 @@ const StepImage = ({ src, label }: { src: string; label: string }) => (
 );
 
 const RoadmapSection = () => (
-  <section className="px-6 md:px-12 py-24 md:py-32 max-w-[800px] mx-auto">
+  <section className="px-6 md:px-12 py-24 md:py-32 max-w-[1000px] mx-auto">
     <FadeUp>
       <p
         className="uppercase font-body text-muted-foreground mb-3 text-center"
@@ -135,6 +135,7 @@ const RoadmapSection = () => (
                       <p className="font-body font-light text-muted-foreground leading-relaxed" style={{ fontSize: "clamp(0.76rem, 0.9vw, 0.86rem)", opacity: 0.42 }}>
                         {s.desc}
                       </p>
+                      {s.image && s.imageLabel && <StepImage src={s.image} label={s.imageLabel} />}
                     </div>
                   )}
                 </div>
@@ -168,6 +169,7 @@ const RoadmapSection = () => (
                       <p className="font-body font-light text-muted-foreground leading-relaxed" style={{ fontSize: "clamp(0.76rem, 0.9vw, 0.86rem)", opacity: 0.42 }}>
                         {s.desc}
                       </p>
+                      {s.image && s.imageLabel && <StepImage src={s.image} label={s.imageLabel} />}
                     </div>
                   )}
                 </div>

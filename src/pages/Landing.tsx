@@ -1,7 +1,9 @@
 import LandingNav from "@/components/landing/LandingNav";
 import HeroSection from "@/components/landing/HeroSection";
 import SocialProofSection from "@/components/landing/SocialProofSection";
+import ResultsSection from "@/components/landing/ResultsSection";
 import ProblemSection from "@/components/landing/ProblemSection";
+import OrganicCACSection from "@/components/landing/OrganicCACSection";
 import SolutionSection from "@/components/landing/SolutionSection";
 import RoadmapSection from "@/components/landing/RoadmapSection";
 import FAQSection from "@/components/landing/FAQSection";
@@ -28,7 +30,9 @@ const Landing = () => {
       <LandingNav />
       <HeroSection />
       <SocialProofSection />
+      <ResultsSection />
       <ProblemSection />
+      <OrganicCACSection />
       <SolutionSection />
       <RoadmapSection />
       <MidCTASection />
