@@ -1,21 +1,22 @@
 import FadeUp from "./FadeUp";
 
+const BASE = "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public";
 const images = [
-  "/result-01.png",
-  "/result-02.png",
-  "/result-03.png",
-  "/result-04.png",
-  "/result-05.png",
-  "/result-06.jpg",
-  "/result-07.jpg",
-  "/result-08.jpg",
-  "/result-09.jpg",
-  "/result-10.jpg",
-  "/result-11.jpg",
-  "/result-12.jpg",
-  "/result-13.jpg",
-  "/result-14.jpg",
-  "/result-15.jpg",
+  `${BASE}/result-01.png`,
+  `${BASE}/result-02.png`,
+  `${BASE}/result-03.png`,
+  `${BASE}/result-04.png`,
+  `${BASE}/result-05.png`,
+  `${BASE}/result-06.png`,
+  `${BASE}/result-07.png`,
+  `${BASE}/result-08.png`,
+  `${BASE}/result-09.png`,
+  `${BASE}/result-10.png`,
+  `${BASE}/result-11.png`,
+  `${BASE}/result-12.png`,
+  `${BASE}/result-13.png`,
+  `${BASE}/result-14.png`,
+  `${BASE}/result-15.png`,
 ];
 
 const ResultsSection = () => (
