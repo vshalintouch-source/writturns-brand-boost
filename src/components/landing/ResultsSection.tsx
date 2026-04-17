@@ -1,21 +1,21 @@
 import FadeUp from "./FadeUp";
 
 const images = [
-  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-01.png",
-  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-02.png",
-  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-03.png",
-  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-04.png",
-  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-05.png",
-  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-06.jpg",
-  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-07.jpg",
-  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-08.jpg",
-  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-09.jpg",
-  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-10.jpg",
-  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-11.jpg",
-  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-12.jpg",
-  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-13.jpg",
-  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-14.jpg",
-  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-15.jpg",
+  "/result-01.png",
+  "/result-02.png",
+  "/result-03.png",
+  "/result-04.png",
+  "/result-05.png",
+  "/result-06.jpg",
+  "/result-07.jpg",
+  "/result-08.jpg",
+  "/result-09.jpg",
+  "/result-10.jpg",
+  "/result-11.jpg",
+  "/result-12.jpg",
+  "/result-13.jpg",
+  "/result-14.jpg",
+  "/result-15.jpg",
 ];
 
 const ResultsSection = () => (
