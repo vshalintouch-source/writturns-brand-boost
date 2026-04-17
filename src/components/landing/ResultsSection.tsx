@@ -1,22 +1,21 @@
 import FadeUp from "./FadeUp";
 
-const BASE = "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public";
 const images = [
-  `${BASE}/result-01.png`,
-  `${BASE}/result-02.png`,
-  `${BASE}/result-03.png`,
-  `${BASE}/result-04.png`,
-  `${BASE}/result-05.png`,
-  `${BASE}/result-06.png`,
-  `${BASE}/result-07.png`,
-  `${BASE}/result-08.png`,
-  `${BASE}/result-09.png`,
-  `${BASE}/result-10.png`,
-  `${BASE}/result-11.png`,
-  `${BASE}/result-12.png`,
-  `${BASE}/result-13.png`,
-  `${BASE}/result-14.png`,
-  `${BASE}/result-15.png`,
+  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-01.png",
+  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-02.png",
+  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-03.png",
+  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-04.png",
+  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-05.png",
+  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-06.jpg",
+  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-07.jpg",
+  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-08.jpg",
+  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-09.jpg",
+  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-10.jpg",
+  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-11.jpg",
+  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-12.jpg",
+  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-13.jpg",
+  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-14.jpg",
+  "https://raw.githubusercontent.com/vshalintouch-source/writturns-brand-boost/main/public/result-15.jpg",
 ];
 
 const ResultsSection = () => (
