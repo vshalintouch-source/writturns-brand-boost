@@ -1,6 +1,15 @@
 import FadeUp from "./FadeUp";
 
-const steps = [
+type Step = {
+  num: string;
+  title: string;
+  desc: string;
+  icon: JSX.Element;
+  image?: string;
+  imageLabel?: string;
+};
+
+const steps: Step[] = [
   {
     num: "01",
     title: "Fill the form",
@@ -20,6 +29,8 @@ const steps = [
         <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/>
       </svg>
     ),
+    image: "/roadmap-02.png",
+    imageLabel: "Example — diagnosis deck",
   },
   {
     num: "03",
@@ -30,6 +41,8 @@ const steps = [
         <polygon points="5 3 19 12 5 21 5 3"/>
       </svg>
     ),
+    image: "/roadmap-03.png",
+    imageLabel: "Example — strategy deck",
   },
   {
     num: "04",
@@ -40,6 +53,8 @@ const steps = [
         <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
       </svg>
     ),
+    image: "/roadmap-04.png",
+    imageLabel: "Example — Loom walkthrough",
   },
   {
     num: "05",
@@ -50,8 +65,31 @@ const steps = [
         <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/>
       </svg>
     ),
+    image: "/roadmap-05.png",
+    imageLabel: "Example — creative execution",
   },
 ];
+
+const StepImage = ({ src, label }: { src: string; label: string }) => (
+  <div className="mt-3">
+    <p
+      className="uppercase font-body text-muted-foreground mb-2"
+      style={{ fontSize: "10px", fontWeight: 300, letterSpacing: "0.18em", opacity: 0.4 }}
+    >
+      {label}
+    </p>
+    <div
+      style={{
+        background: "#0d0d0d",
+        border: "1px solid rgba(248,248,246,0.08)",
+        borderRadius: "8px",
+        overflow: "hidden",
+      }}
+    >
+      <img src={src} alt={label} loading="lazy" style={{ width: "100%", height: "auto", display: "block" }} />
+    </div>
+  </div>
+);
 
 const RoadmapSection = () => (
   <section className="px-6 md:px-12 py-24 md:py-32 max-w-[800px] mx-auto">
