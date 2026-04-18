@@ -129,14 +129,15 @@ const RoadmapSection = () => {
       setTrackHeight(usable);
       setDotPositions(positions);
 
-      // Scroll progress: start filling when section top hits 75% of viewport,
-      // complete when section bottom hits 25% of viewport
+      // Fill tracks the viewport center: a dot activates exactly when it crosses
+      // the middle of the screen. Progress = how far the viewport center has
+      // travelled from the first dot to the last dot.
       const vh = window.innerHeight;
-      const start = vh * 0.75;
-      const end = vh * 0.25;
-      const sectionTopFromBottom = start - timelineRect.top;
-      const totalScrollDistance = timelineRect.height + (start - end);
-      const progress = Math.max(0, Math.min(1, sectionTopFromBottom / totalScrollDistance));
+      const viewportCenter = vh / 2;
+      // First dot's distance from viewport top = timelineRect.top + topOffset
+      const firstDotY = timelineRect.top + topOffset;
+      const distanceFromFirstDot = viewportCenter - firstDotY;
+      const progress = Math.max(0, Math.min(1, distanceFromFirstDot / usable));
 
       const fill = progress * usable;
       setFillHeight(fill);
