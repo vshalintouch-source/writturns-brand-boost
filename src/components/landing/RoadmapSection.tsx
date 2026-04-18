@@ -177,23 +177,23 @@ const RoadmapSection = () => {
 
       {/* Vertical alternating timeline */}
       <div className="relative" ref={timelineRef}>
-        {/* Center line — from first to last circle center */}
+        {/* Center line — unfilled track from first dot center to last dot center */}
         <div
-          className="absolute left-1/2 -translate-x-1/2 w-px border-0"
-          style={{ background: "rgba(200,200,194,0.15)", top: "20px", bottom: "20px" }}
-        />
-
-        {/* Scroll-animated silver dot */}
-        <div
-          className="absolute left-1/2 -translate-x-1/2 z-20"
+          className="absolute left-1/2 -translate-x-1/2 w-px"
           style={{
-            top: `${Math.min(dotTop, trackHeight + 20)}px`,
-            width: "8px",
-            height: "8px",
-            marginTop: "-4px",
+            background: "#1a1a1a",
+            top: `${trackTop}px`,
+            height: `${trackHeight}px`,
+          }}
+        />
+        {/* Filled portion */}
+        <div
+          className="absolute left-1/2 -translate-x-1/2 w-px z-10"
+          style={{
             background: "#C8C8C2",
-            borderRadius: "50%",
-            transition: "top 0.1s linear",
+            top: `${trackTop}px`,
+            height: `${Math.min(fillHeight, trackHeight)}px`,
+            transition: "height 0.1s linear",
           }}
         />
 
