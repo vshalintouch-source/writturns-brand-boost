@@ -54,7 +54,7 @@ const steps: Step[] = [
       </svg>
     ),
     image: "/roadmap-04.png",
-    imageLabel: "MEET & GREET THE TEAM",
+    imageLabel: "MEET & GREET W/ THE TEAM",
   },
   {
     num: "05",
