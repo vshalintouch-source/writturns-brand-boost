@@ -98,23 +98,56 @@ const StepImage = ({ src, label }: { src: string; label: string }) => (
 
 const RoadmapSection = () => {
   const timelineRef = useRef<HTMLDivElement>(null);
-  const [dotTop, setDotTop] = useState(20);
+  const circleRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [trackTop, setTrackTop] = useState(20);
   const [trackHeight, setTrackHeight] = useState(0);
+  const [fillHeight, setFillHeight] = useState(0);
+  const [dotPositions, setDotPositions] = useState<number[]>([]);
+  const [activeIndex, setActiveIndex] = useState(-1);
 
   useEffect(() => {
     const update = () => {
       const el = timelineRef.current;
       if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const vh = window.innerHeight;
-      // Progress: 0 when section top hits viewport bottom, 1 when section bottom hits viewport top
-      const total = rect.height + vh;
-      const scrolled = vh - rect.top;
-      const progress = Math.max(0, Math.min(1, scrolled / total));
-      // Track runs from top:20px to bottom:20px inside the timeline
-      const usable = rect.height - 40;
+      const timelineRect = el.getBoundingClientRect();
+      const circles = circleRefs.current.filter(Boolean) as HTMLDivElement[];
+      if (circles.length < 2) return;
+
+      // Measure: line runs from center of first dot to center of last dot
+      const firstRect = circles[0].getBoundingClientRect();
+      const lastRect = circles[circles.length - 1].getBoundingClientRect();
+      const topOffset = firstRect.top - timelineRect.top + firstRect.height / 2;
+      const bottomOffset = lastRect.top - timelineRect.top + lastRect.height / 2;
+      const usable = bottomOffset - topOffset;
+
+      // Each circle's center position relative to timeline top
+      const positions = circles.map(
+        (c) => c.getBoundingClientRect().top - timelineRect.top + c.getBoundingClientRect().height / 2
+      );
+
+      setTrackTop(topOffset);
       setTrackHeight(usable);
-      setDotTop(20 + progress * usable);
+      setDotPositions(positions);
+
+      // Scroll progress: start filling when section top hits 75% of viewport,
+      // complete when section bottom hits 25% of viewport
+      const vh = window.innerHeight;
+      const start = vh * 0.75;
+      const end = vh * 0.25;
+      const sectionTopFromBottom = start - timelineRect.top;
+      const totalScrollDistance = timelineRect.height + (start - end);
+      const progress = Math.max(0, Math.min(1, sectionTopFromBottom / totalScrollDistance));
+
+      const fill = progress * usable;
+      setFillHeight(fill);
+
+      // Active dot when fill reaches its position
+      const fillBottom = topOffset + fill;
+      let lastActive = -1;
+      positions.forEach((p, i) => {
+        if (fillBottom >= p - 1) lastActive = i;
+      });
+      setActiveIndex(lastActive);
     };
     update();
     window.addEventListener("scroll", update, { passive: true });
