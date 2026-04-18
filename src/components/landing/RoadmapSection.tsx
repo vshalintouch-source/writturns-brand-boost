@@ -222,16 +222,25 @@ const RoadmapSection = () => {
                   </div>
 
                   {/* Center circle */}
-                  <div className="absolute left-1/2 -translate-x-1/2 z-10">
+                  <div className="absolute left-1/2 -translate-x-1/2 z-20">
                     <div
-                      className="w-10 h-10 flex items-center justify-center border-0"
+                      ref={(el) => (circleRefs.current[i] = el)}
+                      className="w-10 h-10 flex items-center justify-center"
                       style={{
-                        border: "1px solid rgba(200,200,194,0.3)",
+                        border: `1px solid ${i <= activeIndex ? "#C8C8C2" : "rgba(200,200,194,0.3)"}`,
                         borderRadius: "50%",
-                        background: "#080808",
+                        background: i <= activeIndex ? "#C8C8C2" : "#080808",
+                        transition: "background 0.2s linear, border-color 0.2s linear",
                       }}
                     >
-                      <span className="font-body font-medium text-muted-foreground" style={{ fontSize: "0.68rem" }}>
+                      <span
+                        className="font-body font-medium"
+                        style={{
+                          fontSize: "0.68rem",
+                          color: i <= activeIndex ? "#080808" : "rgba(200,200,194,0.6)",
+                          transition: "color 0.2s linear",
+                        }}
+                      >
                         {s.num}
                       </span>
                     </div>
