@@ -98,23 +98,56 @@ const StepImage = ({ src, label }: { src: string; label: string }) => (
 
 const RoadmapSection = () => {
   const timelineRef = useRef<HTMLDivElement>(null);
-  const [dotTop, setDotTop] = useState(20);
+  const circleRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [trackTop, setTrackTop] = useState(20);
   const [trackHeight, setTrackHeight] = useState(0);
+  const [fillHeight, setFillHeight] = useState(0);
+  const [dotPositions, setDotPositions] = useState<number[]>([]);
+  const [activeIndex, setActiveIndex] = useState(-1);
 
   useEffect(() => {
     const update = () => {
       const el = timelineRef.current;
       if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const vh = window.innerHeight;
-      // Progress: 0 when section top hits viewport bottom, 1 when section bottom hits viewport top
-      const total = rect.height + vh;
-      const scrolled = vh - rect.top;
-      const progress = Math.max(0, Math.min(1, scrolled / total));
-      // Track runs from top:20px to bottom:20px inside the timeline
-      const usable = rect.height - 40;
+      const timelineRect = el.getBoundingClientRect();
+      const circles = circleRefs.current.filter(Boolean) as HTMLDivElement[];
+      if (circles.length < 2) return;
+
+      // Measure: line runs from center of first dot to center of last dot
+      const firstRect = circles[0].getBoundingClientRect();
+      const lastRect = circles[circles.length - 1].getBoundingClientRect();
+      const topOffset = firstRect.top - timelineRect.top + firstRect.height / 2;
+      const bottomOffset = lastRect.top - timelineRect.top + lastRect.height / 2;
+      const usable = bottomOffset - topOffset;
+
+      // Each circle's center position relative to timeline top
+      const positions = circles.map(
+        (c) => c.getBoundingClientRect().top - timelineRect.top + c.getBoundingClientRect().height / 2
+      );
+
+      setTrackTop(topOffset);
       setTrackHeight(usable);
-      setDotTop(20 + progress * usable);
+      setDotPositions(positions);
+
+      // Scroll progress: start filling when section top hits 75% of viewport,
+      // complete when section bottom hits 25% of viewport
+      const vh = window.innerHeight;
+      const start = vh * 0.75;
+      const end = vh * 0.25;
+      const sectionTopFromBottom = start - timelineRect.top;
+      const totalScrollDistance = timelineRect.height + (start - end);
+      const progress = Math.max(0, Math.min(1, sectionTopFromBottom / totalScrollDistance));
+
+      const fill = progress * usable;
+      setFillHeight(fill);
+
+      // Active dot when fill reaches its position
+      const fillBottom = topOffset + fill;
+      let lastActive = -1;
+      positions.forEach((p, i) => {
+        if (fillBottom >= p - 1) lastActive = i;
+      });
+      setActiveIndex(lastActive);
     };
     update();
     window.addEventListener("scroll", update, { passive: true });
@@ -144,23 +177,23 @@ const RoadmapSection = () => {
 
       {/* Vertical alternating timeline */}
       <div className="relative" ref={timelineRef}>
-        {/* Center line — from first to last circle center */}
+        {/* Center line — unfilled track from first dot center to last dot center */}
         <div
-          className="absolute left-1/2 -translate-x-1/2 w-px border-0"
-          style={{ background: "rgba(200,200,194,0.15)", top: "20px", bottom: "20px" }}
-        />
-
-        {/* Scroll-animated silver dot */}
-        <div
-          className="absolute left-1/2 -translate-x-1/2 z-20"
+          className="absolute left-1/2 -translate-x-1/2 w-px"
           style={{
-            top: `${Math.min(dotTop, trackHeight + 20)}px`,
-            width: "8px",
-            height: "8px",
-            marginTop: "-4px",
+            background: "#1a1a1a",
+            top: `${trackTop}px`,
+            height: `${trackHeight}px`,
+          }}
+        />
+        {/* Filled portion */}
+        <div
+          className="absolute left-1/2 -translate-x-1/2 w-px z-10"
+          style={{
             background: "#C8C8C2",
-            borderRadius: "50%",
-            transition: "top 0.1s linear",
+            top: `${trackTop}px`,
+            height: `${Math.min(fillHeight, trackHeight)}px`,
+            transition: "height 0.1s linear",
           }}
         />
 
@@ -189,16 +222,25 @@ const RoadmapSection = () => {
                   </div>
 
                   {/* Center circle */}
-                  <div className="absolute left-1/2 -translate-x-1/2 z-10">
+                  <div className="absolute left-1/2 -translate-x-1/2 z-20">
                     <div
-                      className="w-10 h-10 flex items-center justify-center border-0"
+                      ref={(el) => (circleRefs.current[i] = el)}
+                      className="w-10 h-10 flex items-center justify-center"
                       style={{
-                        border: "1px solid rgba(200,200,194,0.3)",
+                        border: `1px solid ${i <= activeIndex ? "#C8C8C2" : "rgba(200,200,194,0.3)"}`,
                         borderRadius: "50%",
-                        background: "#080808",
+                        background: i <= activeIndex ? "#C8C8C2" : "#080808",
+                        transition: "background 0.2s linear, border-color 0.2s linear",
                       }}
                     >
-                      <span className="font-body font-medium text-muted-foreground" style={{ fontSize: "0.68rem" }}>
+                      <span
+                        className="font-body font-medium"
+                        style={{
+                          fontSize: "0.68rem",
+                          color: i <= activeIndex ? "#080808" : "rgba(200,200,194,0.6)",
+                          transition: "color 0.2s linear",
+                        }}
+                      >
                         {s.num}
                       </span>
                     </div>
