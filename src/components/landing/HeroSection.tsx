@@ -46,7 +46,7 @@ const HeroSection = () => (
     <FadeUp delay={0.2}>
       {/* REPLACE WITH VSL EMBED URL */}
       <div
-        className="w-full max-w-[780px] mb-10 relative"
+        className="w-full max-w-[900px] mb-10 relative mx-auto"
         style={{
           border: "1px solid rgba(248,248,246,0.12)",
           borderRadius: "3px",
