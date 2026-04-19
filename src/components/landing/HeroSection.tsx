@@ -53,21 +53,13 @@ const HeroSection = () => (
           background: "#0a0a0a",
         }}
       >
-        <div className="relative w-full" style={{ paddingBottom: "56.25%", minHeight: "440px" }}>
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-            <div
-              className="w-16 h-16 rounded-full flex items-center justify-center"
-              style={{ border: "1px solid rgba(200,200,194,0.4)" }}
-            >
-              <svg width="20" height="24" viewBox="0 0 20 24" fill="none" className="ml-1">
-                <path d="M0 0L20 12L0 24V0Z" fill="rgba(200,200,194,0.5)" />
-              </svg>
-            </div>
-            <span className="font-body font-light text-muted-foreground" style={{ fontSize: "0.65rem", opacity: 0.5 }}>
-              Coming soon
-            </span>
-          </div>
-        </div>
+        <iframe
+          src="https://www.youtube.com/embed/RfDJp1dwjtA"
+          width="100%"
+          style={{ aspectRatio: "16/9", border: "none", borderRadius: "4px", display: "block" }}
+          allowFullScreen
+          allow="autoplay; encrypted-media"
+        />
       </div>
     </FadeUp>
 
