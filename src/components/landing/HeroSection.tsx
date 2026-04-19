@@ -43,10 +43,10 @@ const HeroSection = () => (
       </p>
     </FadeUp>
 
-    <FadeUp delay={0.2}>
+    <FadeUp delay={0.2} className="w-[90%] max-w-[900px] mx-auto">
       {/* REPLACE WITH VSL EMBED URL */}
       <div
-        className="w-full max-w-[900px] mb-10 relative mx-auto"
+        className="w-full mb-10 relative"
         style={{
           border: "1px solid rgba(248,248,246,0.12)",
           borderRadius: "3px",
@@ -56,7 +56,7 @@ const HeroSection = () => (
         <iframe
           src="https://www.youtube.com/embed/RfDJp1dwjtA"
           width="100%"
-          style={{ aspectRatio: "16/9", border: "none", borderRadius: "4px", display: "block" }}
+          style={{ width: "100%", aspectRatio: "16/9", border: "none", borderRadius: "4px", display: "block" }}
           allowFullScreen
           allow="autoplay; encrypted-media"
         />
